@@ -11,16 +11,42 @@
   </head>
 
   <body>
-        <nav class="navbar navbar-toggleable-sm navbar-light bg-faded mb-5">
-            <%= link_to 'Home', root_path,  { :class=>"nav-link" } %>
-            <%= link_to 'About', about_path, { :class=>"nav-link" }%>
-            <%= link_to 'Contact', contact_path, { :class=>"nav-link" }%>
-        </nav>
+    <nav class="navbar navbar-toggleable-md navbar-light bg-faded">
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <%= link_to 'Quae', root_path,   class:"navbar-brand"  %>
+      <div class="collapse navbar-collapse container justify-content-between" id="navbarToggle">
+        <ul class="nav navbar-nav">
+          <li class='nav-item'> <%= link_to 'Home', root_path,   class:"nav-link"  %> </li>
+          <li class='nav-item'> <%= link_to 'About', about_path,  class:"nav-link" %> </li>
+          <li class='nav-item'> <%= link_to 'Contact', contact_path,  class:"nav-link" %> </li>
+          
+        </ul>
+        <ul class='nav navbar-nav'>
+
+          <% if user_signed_in? %>
+            <li class='nav-item'> <%= link_to 'Log Out', signout_path, method: :delete, class:"nav-link" %> </li>
+
+          <% else %>
+
+            <li class='nav-item'> <%= link_to 'Sign Up', signup_path, class:"nav-link" %> </li>
+            <li class='nav-item'> <%= link_to 'Sign In', signin_path, class:"nav-link btn btn-outline-primary" %></li>
+        
+          <% end %> 
+
+        </ul>
+      </div>
+    </nav>
+        <!-- Flash Messages -->
+        <% flash.each do |name, message| %>
+          <%= content_tag(:div, message, class: "alert alert-info #{name}") %>
+        <% end  %>
         <div class="container">
             <%= yield %>
         </div> 
    <!-- Footer -->
-    <footer class="small text-muted">
+    <footer class="small text-muted fixed-bottom">
       <div class="container">
         <hr>
         <center>

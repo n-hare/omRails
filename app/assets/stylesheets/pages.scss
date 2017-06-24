@@ -2,7 +2,13 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.jumbotron-home {
+.jumbotron-home, footer {
     background-color: white;
 
+}
+
+.new_user{
+    max-width: 330px;
+    padding: 5em 1em;
+    margin: 0 auto;
 }
