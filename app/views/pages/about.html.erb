@@ -1,14 +1,33 @@
 
-<h1>About Us</h1>
-<h2>Quae–A Quora Clone</h2>
-<ul>
-    <li>Post Questions</li>
-    <li>Answer Questions</li>
-    <li>Like Questions</li>
-</ul>
-<h2>About Me, Nate</h2>
-<ul>
-    <li>Apple User</li>
-    <li>From Ontario, Canada</li>
-    <li>OneMonth Rails is my 4th Premium Course</li>
-</ul>
+<h1>About Quae–A Quora Clone</h1>
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Post</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <% if !user_signed_in? %>
+                <p>
+                    <%= link_to 'Sign Up', signup_path, class:"btn btn-primary" %>
+                </p>
+            <% end %>
+        </div>
+        <div class="col-md-4">
+            <h2>Answer</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <% if !user_signed_in? %>
+                <p>
+                    <%= link_to 'Sign Up', signup_path, class:"btn btn-primary" %>
+                </p>
+            <% end %>
+        </div>
+        <div class="col-md-4">
+            <h2>Like</h2>
+            <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+            <% if !user_signed_in? %>
+                <p>
+                    <%= link_to 'Sign Up', signup_path, class:"btn btn-primary" %>
+                </p>
+            <% end %>
+        </div>
+    </div>
+</div>
