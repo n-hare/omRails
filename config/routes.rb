@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :questions
   ActiveAdmin.routes(self)
     devise_for :users
     as :user do
