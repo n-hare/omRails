@@ -9,6 +9,7 @@ class QuestionsController < ApplicationController
   # GET /questions/1
   def show
      @question = Question.find(params[:id])
+     
   end
 
   # GET /questions/new

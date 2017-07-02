@@ -18,3 +18,22 @@
         <%= link_to 'Back', questions_path %>
     </div>
 </div>
+<% @question.answers.each do |answer| %>
+
+  <div class="card w-50 mx-auto my-3">
+    <div class="card-header h4 bg-success">
+      Answer
+    </div>
+    <div class='card-block'> 
+      <%= answer.text %>
+    </div>
+    <div class="card-footer">
+      <% if answer.user == current_user %>
+          <%= link_to 'Edit', edit_answer_path(answer) %>&nbsp;
+      <% end %>
+    </div>
+  </div> 
+
+<% end %>
+
+

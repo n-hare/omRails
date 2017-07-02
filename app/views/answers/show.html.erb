@@ -1,0 +1,27 @@
+
+
+<div class="card w-75 mx-auto my-3">
+    <div class="card-header h4">
+      Question
+    </div>
+    <div class="card-block">
+      <%= @answer.question.content %>
+    </div>
+</div>
+
+<div class="card w-50 mx-auto my-3">
+    <div class="card-header h4 bg-success">
+      Answer
+    </div>
+    <div class="card-block">
+      <%= @answer.text %>
+    </div>
+    <div class="card-footer">
+        <% if @answer.user == current_user %>
+            <%= link_to 'Edit', edit_answer_path(@answer) %>&nbsp;
+        <% end %>
+        <%= link_to 'Back', answers_path %>
+    </div>
+</div>
+
+
