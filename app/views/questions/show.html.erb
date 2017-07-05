@@ -10,6 +10,8 @@
     </div>
     <div class="card-block">
       <%= @question.content %>
+      <br>
+      <span class="text-muted small">—from <%= @question.user.username %></span>
     </div>
     <div class="card-footer">
         <% if @question.user == current_user %>
@@ -26,6 +28,8 @@
     </div>
     <div class='card-block'> 
       <%= answer.text %>
+      <br>
+      <span class="text-muted small">—from <%= answer.user.username %></span>
     </div>
     <div class="card-footer">
       <% if answer.user == current_user %>
