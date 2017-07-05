@@ -12,5 +12,5 @@ ActiveAdmin.register Answer do
 #   permitted
 # end
 
-     permit_params :user_id, :question_id, :text
+     permit_params  :text
 end

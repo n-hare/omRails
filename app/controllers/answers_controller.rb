@@ -1,5 +1,5 @@
 class AnswersController < ApplicationController
-
+  before_action :authenticate_user!, except: [:index, :show]
   # GET /answers
   def index
     @answers = Answer.all
@@ -12,6 +12,7 @@ class AnswersController < ApplicationController
 
   # GET /answers/new
   def new
+    @question = Question.find($the_question.id)
     @answer = current_user.answers.new
   end
 
@@ -23,11 +24,13 @@ class AnswersController < ApplicationController
   # POST /answers
 
   def create
-
-    @answer = current_user.answers.new(answer_params)
+    question = Question.find($the_question.id)
+    @answer = question.answers.new(answer_params)
+    @answer.user_id=current_user.id
       if @answer.save
         redirect_to question, notice: 'Answer was successfully created.' 
       else
+        @question = Question.find(question.id)
         render :new 
       end
   end
@@ -46,8 +49,9 @@ class AnswersController < ApplicationController
   # DELETE /answers/1
   def destroy
     @answer = current_user.answers.find(params[:id])
+    current_question = @answer.question
     @answer.destroy
-    redirect_to answers_url, notice: 'Answer was successfully destroyed.'
+    redirect_to current_question, notice: 'Answer was successfully destroyed.'
       
   end
 

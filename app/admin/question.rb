@@ -12,5 +12,5 @@ ActiveAdmin.register Question do
 #   permitted
 # end
 
-     permit_params :user, :content
+     permit_params  :content
 end

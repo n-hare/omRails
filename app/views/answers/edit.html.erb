@@ -1,4 +1,13 @@
-<h1>Editing Answer</h1>
+<div class="card w-75 mx-auto my-3">
+    <div class="card-header h4">
+      Question
+    </div>
+    <div class="card-block">
+      <%= @answer.question.content %>
+    </div>
+</div>
+
+<h1>Edit Answer</h1>
 
 <%= render 'form', answer: @answer %>
 <br >
