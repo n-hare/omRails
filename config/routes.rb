@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
-  
+
   resources :questions
   resources :answers
+
+  get 'users/:username',  to:'users#show', as: 'user'
+
   ActiveAdmin.routes(self)
     devise_for :users
     as :user do

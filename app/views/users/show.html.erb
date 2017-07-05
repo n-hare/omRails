@@ -1,0 +1,49 @@
+<h1><%= @user.username %></h1>
+
+<p class="h4 mt-5">My Questions</p>
+<% @user.questions.each do |question| %>
+  <div class="card w-75 mx-auto my-3">
+    <div class="card-header h4">
+      Question
+    </div>
+    <div class="card-block">
+      <%= question.content %>
+    </div>
+    <div class="card-footer">
+      <%= link_to 'Show', question %>&nbsp;
+      <% if question.user == current_user %>
+        <%= link_to 'Edit', edit_question_path(question) %>&nbsp;
+        <%= link_to 'Delete', question, method: :delete, data: { confirm: 'Are you sure?' } %>&nbsp;
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+<% if @user.questions.empty? %>
+        <p class='text-muted text-center'>Nothing here yet, ask your first question</p>
+<% end %>
+
+<p class="h4 mt-5">My Answers</p>
+<% @user.answers.each do |answer| %>
+
+  <div class="card w-50 mx-auto my-3">
+    <div class="card-header h4 bg-success">
+      Answer
+    </div>
+    <div class='card-block'> 
+      <%= answer.text %>
+    </div>
+    <div class="card-footer">
+        <%= link_to 'Show', answer.question %>&nbsp;
+      <% if answer.user == current_user %>
+        <%= link_to 'Edit', edit_answer_path(answer) %>&nbsp; 
+        <%= link_to 'Delete', answer, method: :delete, data: { confirm: 'Are you sure?' } %> 
+      <% end %>
+    </div>
+  </div> 
+
+<% end %>
+<% if @user.answers.empty? %>
+        <p class='text-muted text-center'>Nothing here yet, answer a question</p>
+<% end %>
+
