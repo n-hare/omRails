@@ -55,7 +55,8 @@ a.btn{
     transition: all 0.5s ease-out; 
 }
 
-.like-star:link, .like-star:visited, .unlike-star:link, .unlike-star:visited{
+.like-star:link, .like-star:visited, .like-star:active, 
+.unlike-star:link, .unlike-star:visited, .unlike-star:active,{
     text-decoration: none;
 } 
 .like-star:hover{
