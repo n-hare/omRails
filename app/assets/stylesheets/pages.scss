@@ -54,6 +54,10 @@ a.btn{
     color: #fccd02;
     transition: all 0.5s ease-out; 
 }
+
+.like-star:link, .like-star:visited, .unlike-star:link, .unlike-star:visited{
+    text-decoration: none;
+} 
 .like-star:hover{
     color: #45b649;
     text-decoration: none;
@@ -69,3 +73,5 @@ a.btn{
     text-decoration: none;
     transform: scale(2, 2);
 }
+
+
