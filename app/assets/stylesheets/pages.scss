@@ -41,4 +41,31 @@ a.btn{
 }
 .card-footer{
     background-color: rgba(253,253,253, .25);
+
+}
+.content-flex{
+    display: flex;
+    justify-content: space-between; 
+    align-content: baseline;
+}
+
+.like-star{
+    display: inline-block;
+    color: #fccd02;
+    transition: all 0.5s ease-out; 
+}
+.like-star:hover{
+    color: #45b649;
+    text-decoration: none;
+    transform: scale(2, 2);
+}
+.unlike-star{
+    display: inline-block;
+    color: #45b649;
+    transition: all 0.5s ease-out; 
+}
+.unlike-star:hover{
+    color: #fccd02;
+    text-decoration: none;
+    transform: scale(2, 2);
 }

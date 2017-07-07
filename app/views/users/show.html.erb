@@ -20,8 +20,30 @@
 <% end %>
 
 <% if @user.questions.empty? %>
-        <p class='text-muted text-center'>Nothing here yet, ask your first question</p>
+        <p class='text-muted text-center'>Nothing here, no questions yet</p>
 <% end %>
+
+
+
+<p class="h4 mt-5">Liked Questions</p>
+<% @user.find_liked_items.each do |liked_item| %>
+  <div class="card w-75 mx-auto my-3">
+    <div class="card-header h4">
+      Question
+    </div>
+    <div class="card-block">
+      <%= liked_item.content %>
+    </div>
+    <div class="card-footer">
+      <%= link_to 'Show', liked_item %>
+    </div>
+  </div>
+<% end %>
+
+<% if @user.find_liked_items.empty? %>
+        <p class='text-muted text-center'>Nothing here, no likes yet</p>
+<% end %>
+
 
 <p class="h4 mt-5">My Answers</p>
 <% @user.answers.each do |answer| %>
@@ -44,6 +66,6 @@
 
 <% end %>
 <% if @user.answers.empty? %>
-        <p class='text-muted text-center'>Nothing here yet, answer a question</p>
+        <p class='text-muted text-center'>Nothing here, no answers yet</p>
 <% end %>
 

@@ -1,10 +1,5 @@
 Rails.application.routes.draw do
 
-  resources :questions
-  resources :answers
-
-  get 'users/:username',  to:'users#show', as: 'user'
-
   ActiveAdmin.routes(self)
     devise_for :users
     as :user do
@@ -12,6 +7,18 @@ Rails.application.routes.draw do
         delete 'signout' => 'devise/sessions#destroy'
         get 'signup' => 'devise/registrations#new'
     end
+
+  resources :questions do
+    member do
+      post 'like', to: 'likes#create'
+      delete 'unlike', to: 'likes#destroy'
+    end
+  end    
+  resources :answers
+
+  get 'users/:username',  to:'users#show', as: 'user'
+
+  
     root 'pages#home'
     get 'about' => 'pages#about' 
     get 'contact' => 'pages#contact'

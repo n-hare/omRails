@@ -10,10 +10,27 @@
       <span class="text-muted small">—from <%= link_to @question.user.username, user_path(@question.user.username) %></span>
     </div>
     <div class="card-footer">
-        <% if @question.user == current_user %>
-            <%= link_to 'Edit', edit_question_path(@question) %>&nbsp;
-        <% end %>
-        <%= link_to 'Back', questions_path %>
+      <div class='content-flex'>
+        <div>
+          <% if @question.user == current_user %>
+              <%= link_to 'Edit', edit_question_path(@question) %>&nbsp;
+          <% end %>
+          <%= link_to 'Back', questions_path %>
+        </div>
+        <div class='likes-info'>
+
+          <%=  @question.votes_for.up.size%>&nbsp;
+          <% if user_signed_in? %>
+            <% if current_user.voted_up_on? @question %>
+              <%= link_to '★', unlike_question_path(@question), method: :delete, class: 'unlike-star' %>
+            <% else %>
+               <%= link_to "☆".html_safe, like_question_path(@question), method: :post, class: 'like-star'%>
+            <% end %>
+          <% else %>
+            <span class='text-primary'>★</span>
+          <% end %>
+        </div>
+      </div>
     </div>
 </div>
 <% @question.answers.each do |answer| %>
