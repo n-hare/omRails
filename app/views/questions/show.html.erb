@@ -24,7 +24,7 @@
             <% if current_user.voted_up_on? @question %>
               <%= link_to '★', unlike_question_path(@question), method: :delete, class: 'unlike-star' %>
             <% else %>
-               <%= link_to "☆".html_safe, like_question_path(@question), method: :post, class: 'like-star'%>
+               <%= link_to "☆", like_question_path(@question), method: :post, class: 'like-star'%>
             <% end %>
           <% else %>
             <span class='text-primary'>★</span>
@@ -33,7 +33,7 @@
       </div>
     </div>
 </div>
-<% @question.answers.each do |answer| %>
+<% @question.answers.order(:cached_votes_up => :desc).each do |answer| %>
 
   <div class="card w-50 mx-auto my-3">
     <div class="card-header h4 bg-success">
@@ -45,14 +45,31 @@
       <span class="text-muted small">—from <%= link_to answer.user.username, user_path(answer.user.username) %></span>
     </div>
     <div class="card-footer">
-      <% if answer.user == current_user %>
-        <%= link_to 'Edit', edit_answer_path(answer) %>&nbsp; 
-        <%= link_to 'Delete', answer, method: :delete, data: { confirm: 'Are you sure?' } %> 
-      <% end %>
+      <div class="content-flex">
+        <div>
+          <% if answer.user == current_user %>
+            <%= link_to 'Edit', edit_answer_path(answer) %>&nbsp; 
+            <%= link_to 'Delete', answer, method: :delete, data: { confirm: 'Are you sure?' } %> 
+          <% end %>
+        </div>
+        <div class="like-info">
+          <%=  answer.votes_for.up.size %>
+          <% if user_signed_in? %>
+
+            <% if current_user.voted_up_on? answer %>
+              <%= link_to "➜", unvote_answer_path(answer), method: :delete, class: 'arrow arrow-unvote'%>
+            <% else %>
+              <%= link_to "⇨", vote_answer_path(answer), method: :post, class: 'arrow arrow-vote'%>
+            <% end %>
+          <% else %>
+            <span class='text-primary arrow'>➜</span>
+          <% end %>
+        </div>
+      </div>
     </div>
   </div> 
-
 <% end %>
+
 <% if @question.answers.empty? %>
         <p class='text-muted text-center'>Nothing here yet, be the first to answer?</p>
 <% end %>

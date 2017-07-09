@@ -14,7 +14,12 @@ Rails.application.routes.draw do
       delete 'unlike', to: 'likes#destroy'
     end
   end    
-  resources :answers
+  resources :answers do
+    member do
+      post 'vote', to: 'votes#create'
+      delete 'unvote', to: 'votes#destroy'
+    end
+  end 
 
   get 'users/:username',  to:'users#show', as: 'user'
 
